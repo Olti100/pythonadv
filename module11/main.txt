@@ -1,2 +1,2 @@
-Hello World 
-Digital School 
+Name: Alice
+Age 30
