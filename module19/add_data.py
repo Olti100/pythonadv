@@ -18,6 +18,21 @@ with st.sidebar.form('book_form'):
     new_genre = st.selectbox('Genre', book_df['Genre'],unique())
     submit_button = st.form_submit_button(label="Add Book")
 
+if submit_button:
+    new_data = {
+        'Name': new_name,
+        'Author': new_author,
+        'User Rating' : new_user_rating,
+        'Reviews' : new_reviews,
+        'Price' : new_price,
+        'Year' : new_year,
+        'Genre' : new_genre
+    }
+    book_df = pd.concat([pd.DataFrame(new_data, index=[0]), book_df], ignore_index= True)
+    book_df.to_csv('bestsellers_with_categories_2022_03_27.csv', index = False)
+    st.sidebar.success('New book added successfully!')
+
+
 st.subheader("Summery Statistics")
 total_books = book_df.shape[0]
 unique_title = book_df['Name'].nunique()
